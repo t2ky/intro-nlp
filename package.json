@@ -4,7 +4,7 @@
   "description": "HAI研究室 新人向け自然言語処理入門スライド",
   "scripts": {
     "dev": "slidev slides.md",
-    "build": "slidev build slides.md",
+    "build": "slidev build slides.md --base /intro-nlp/",
     "export": "slidev export slides.md",
     "export-pdf": "slidev export slides.md --format pdf"
   },
