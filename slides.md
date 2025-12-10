@@ -1,17 +1,16 @@
 ---
 theme: default
-background: https://source.unsplash.com/collection/94734566/1920x1080
 class: text-center
 highlighter: shiki
 lineNumbers: true
 colorSchema: light
 info: |
-  ## HAI研究室 新人向け自然言語処理入門
+  ## HAI班 新人向け自然言語処理入門
   Affective Computingと感情推定の実践
 drawings:
   persist: false
 transition: slide-left
-title: HAI研究室 自然言語処理入門
+title: HAI班 自然言語処理入門
 mdc: true
 ---
 
@@ -40,7 +39,7 @@ a {
 }
 </style>
 
-# HAI研究室 新人向け
+# HAI班 新人向け
 
 # 自然言語処理入門
 
@@ -76,10 +75,14 @@ layout: default
 </div>
 
 ---
-layout: two-cols
+layout: default
 ---
 
 # Affective Computingとは
+
+<div class="grid grid-cols-2 gap-8 mt-6">
+
+<div>
 
 <div class="text-sm">
 
@@ -103,15 +106,17 @@ layout: two-cols
 
 </div>
 
-::right::
+</div>
 
-<div class="pl-4">
+<div>
+
+## 感情の構成要素
 
 <v-click>
 
-## 感情の6つの構成要素
-
 <div class="text-xs mt-4">
+
+**6つの要素** (Fontaine et al., 2007)
 
 1. **評価プロセス** - 状況の解釈
 2. **心理生理学的変化** - 心拍数、扁桃体反応
@@ -127,6 +132,8 @@ layout: two-cols
 </div>
 
 </v-click>
+
+</div>
 
 </div>
 
@@ -165,15 +172,14 @@ layout: default
 
 </div>
 
-<div v-click class="border p-3 rounded bg-yellow-50">
+<div v-click class="border p-3 rounded">
 
-### **Plutchikの基本8感情** ⭐
-**喜び、信頼、恐れ、驚き**
-**悲しみ、嫌悪、怒り、期待**
+### Plutchikの基本8感情
+喜び、信頼、恐れ、驚き、悲しみ、嫌悪、怒り、期待
 
 <div class="text-xs mt-2">
-✨ 感情の強度と対立関係を表現
-<strong>→ 後のWRIMEで使用！</strong>
+感情の強度と対立関係を表現
+
 </div>
 
 </div>
@@ -1191,6 +1197,6 @@ class: text-center
 
 <div class="mt-12 text-sm text-gray-500">
 
-HAI研究室 新人向け自然言語処理入門
+HAI班 新人向け自然言語処理入門
 
 </div>
