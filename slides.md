@@ -4,6 +4,7 @@ background: https://source.unsplash.com/collection/94734566/1920x1080
 class: text-center
 highlighter: shiki
 lineNumbers: true
+colorSchema: light
 info: |
   ## HAI研究室 新人向け自然言語処理入門
   Affective Computingと感情推定の実践
@@ -13,6 +14,31 @@ transition: slide-left
 title: HAI研究室 自然言語処理入門
 mdc: true
 ---
+
+<style>
+/* ライトモード強制 & 視認性向上 */
+.slidev-layout {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+}
+
+/* 背景色付きボックスの文字色を強制 */
+.bg-blue-50, .bg-yellow-50, .bg-green-50, .bg-red-50,
+.bg-purple-50, .bg-gray-50 {
+  color: #1a1a1a !important;
+}
+
+/* コードブロックは見やすく */
+code {
+  background-color: #f5f5f5 !important;
+  color: #2d3748 !important;
+}
+
+/* リンクの色 */
+a {
+  color: #2563eb !important;
+}
+</style>
 
 # HAI研究室 新人向け
 
@@ -530,19 +556,19 @@ layout: default
 
 ## データセットの概要
 
-- **提供**: 京都大学NLPラボ
-- **規模**:
-  - 訓練: 30,000サンプル
-  - 検証: 2,000サンプル
-  - テスト: 2,000サンプル
+- **提供**: 大阪大学・愛媛大学（梶原智之 他, NAACL 2021）
+- **規模** (Ver.2):
+  - 35,000件の投稿
+  - 60人の筆者から収集
+  - クラウドワーカ3人による客観ラベル
 
 ## 特徴
 
 <v-clicks>
 
-- **書き手**と**読み手**の両方の感情
-- **0-3の連続値**で強度を表現
-- 主観的感情の多様性を捉える
+- **主観**（書き手1人）と**客観**（読み手3人）の両方の感情
+- **0-3の4段階**で各感情の強度をラベル付け
+- Ver.2では感情極性（-2〜+2）も追加
 
 </v-clicks>
 
