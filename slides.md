@@ -137,6 +137,10 @@ layout: default
 
 </div>
 
+<div class="absolute bottom-2 left-8 right-8 text-xs text-gray-800">
+<a href="https://www.jstage.jst.go.jp/article/jjsai/36/1/36_4/_article/-char/ja" target="_blank">Gratch, J. (2021). Affective Computingの研究分野：学際的視点. 人工知能, 36(1).</a> | <a href="https://doi.org/10.1111/j.1467-9280.2007.02024.x" target="_blank">Fontaine et al. (2007). The World of Emotions is not Two-Dimensional.</a>
+</div>
+
 ---
 layout: default
 ---
@@ -613,6 +617,10 @@ layout: default
 
 </div>
 
+<div class="absolute bottom-2 left-8 right-8 text-xs text-gray-800">
+<a href="https://aclanthology.org/2021.naacl-main.169/" target="_blank">Kajiwara et al. (2021). WRIME: A New Dataset for Emotional Intensity Estimation with Subjective and Objective Annotations. NAACL 2021.</a>
+</div>
+
 ---
 layout: default
 ---
@@ -657,6 +665,10 @@ layout: default
 
 </v-clicks>
 
+</div>
+
+<div class="absolute bottom-1 left-8 right-8 text-xs text-gray-800">
+<a href="https://arxiv.org/abs/2505.00013" target="_blank">Performance Evaluation of Emotion Classification in Japanese Using RoBERTa and DeBERTa. arXiv:2505.00013, 2025.</a>
 </div>
 
 ---
