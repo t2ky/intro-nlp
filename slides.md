@@ -1170,10 +1170,6 @@ layout: default
 
 <v-clicks>
 
-### 📄 論文
-- Gratch, J. (2021). "Affective Computingの研究分野：学際的視点"
-- Performance Evaluation of Emotion Classification in Japanese (arXiv 2505.00013)
-
 ### 📊 データセット
 - WRIME corpus 大阪大学・愛媛大学（梶原智之 他, NAACL 2021）
 - https://github.com/ids-cv/wrime

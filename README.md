@@ -1,10 +1,10 @@
-# HAI研究室 新人向け自然言語処理入門
+# HAI班 新人向け自然言語処理入門
 
 Affective Computingと感情推定の実践ワークショップ用スライド
 
 ## 📚 概要
 
-このリポジトリは、HAI/HRI研究室の新人向けに、Affective Computingと自然言語処理による感情推定について学ぶための教材です。
+このリポジトリは、HAI/HRI班の新人向けに、Affective Computingと自然言語処理による感情推定について学ぶための教材です。
 
 ### 学習内容
 
@@ -94,7 +94,7 @@ python -m http.server 8000
 - Performance Evaluation of Emotion Classification in Japanese Using RoBERTa and DeBERTa (arXiv 2505.00013)
 
 ### データセット
-- [WRIME corpus](https://github.com/ids-cv/wrime) - 京都大学NLPラボ
+- [WRIME corpus](https://github.com/ids-cv/wrime) - 大阪大学・愛媛大学（梶原智之 他, NAACL 2021）
 
 ### モデル
 - [neuralnaut/deberta-wrime-emotions](https://huggingface.co/neuralnaut/deberta-wrime-emotions) - HuggingFace
@@ -114,10 +114,6 @@ python mecab_demo.py
 python emotion_analysis.py
 ```
 
-## 📝 ライセンス
-
-MIT License
-
 ## 👥 コントリビューター
 
-HAI研究室メンバー
+@t2ky
