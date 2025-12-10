@@ -1175,8 +1175,9 @@ layout: default
 - https://github.com/ids-cv/wrime
 
 ### 🤗 モデル
-- HuggingFace Hub: neuralnaut/deberta-wrime-emotions
-- ベースモデル: DeBERTa V3 (京都大学NLPラボ) ku-nlp/deberta-v3-base-japanese
+- 8感情強度回帰モデル: [neuralnaut/deberta-wrime-emotions](https://huggingface.co/neuralnaut/deberta-wrime-emotions)
+- 感情極性回帰モデル: [neuralnaut/deberta-wrime-sentiment](https://huggingface.co/neuralnaut/deberta-wrime-sentiment)
+- ベースモデル: DeBERTa V3 (京都大学NLPラボ) [ku-nlp/deberta-v3-base-japanese](https://huggingface.co/ku-nlp/deberta-v3-base-japanese)
 
 </v-clicks>
 
