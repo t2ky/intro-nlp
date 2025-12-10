@@ -460,7 +460,7 @@ layout: default
 
 以下のコードを `mecab_demo.py` として保存し、実行してみましょう：
 
-```python
+```python {*}{maxHeight:'320px'}
 import MeCab
 
 def analyze_text(text):
@@ -504,7 +504,7 @@ layout: default
 
 ## 感情を表す単語を見つけよう
 
-```python {all|1-7|9-24|26-30|all}
+```python {all|1-7|9-24|26-30|all}{maxHeight:'360px'}
 import MeCab
 
 # 感情語の辞書（簡易版）
@@ -791,7 +791,7 @@ layout: default
 
 <div class="mt-4">
 
-```python {all|1-3|5-9|11-14|all}
+```python {all|1-3|5-9|11-14|all}{maxHeight:'260px'}
 # サンプルテキスト
 texts = [
     "今日は最高の一日でした！",
@@ -837,7 +837,7 @@ layout: default
 
 <div class="mt-4">
 
-```python {all|1-2|4-16|18-20|all}
+```python {all|1-2|4-16|18-20|all}{maxHeight:'400px'}
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -882,7 +882,7 @@ layout: default
 
 ## インタラクティブ版
 
-```python {all|1-19|21-24|all}
+```python {all|1-19|21-24|all}{maxHeight:'360px'}
 def interactive_emotion_analysis():
     """対話的に感情分析を実行"""
 
@@ -1163,12 +1163,12 @@ layout: default
 - Performance Evaluation of Emotion Classification in Japanese (arXiv 2505.00013)
 
 ### 📊 データセット
-- WRIME corpus (京都大学NLPラボ)
+- WRIME corpus 大阪大学・愛媛大学（梶原智之 他, NAACL 2021）
 - https://github.com/ids-cv/wrime
 
 ### 🤗 モデル
 - HuggingFace Hub: neuralnaut/deberta-wrime-emotions
-- 東北大BERT、NICT BERTなど
+- ベースモデル: DeBERTa V3 (京都大学NLPラボ) ku-nlp/deberta-v3-base-japanese
 
 </v-clicks>
 
@@ -1178,7 +1178,7 @@ layout: default
 
 ## 🚀 研究テーマのアイデア
 
-マルチモーダル感情認識 / リアルタイム感情トラッキング / 文化差を考慮した感情推定
+マルチモーダル感情認識 / リアルタイム感情トラッキング / 感情に基づいて変化する〇〇
 
 </div>
 
