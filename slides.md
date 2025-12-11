@@ -833,7 +833,7 @@ layout: default
 
 ## 分かち書きの違いを見てみよう
 
-```python {all|1-5|7-10|12-15|17-21|all}{maxHeight:'360px'}
+```python {all|1-5|7-10|12-15|17-21|all}{maxHeight:'200px'}
 from transformers import AutoTokenizer
 import MeCab
 
@@ -883,7 +883,7 @@ layout: default
 
 ## 感情推定に基づいて共感応答するボット 🤖
 
-```python {all|1-4|6-9|11-33|35-42|44-50|52-54|all}{maxHeight:'400px'}
+```python {all|1-4|6-9|11-33|35-42|44-50|52-54|all}{maxHeight:'200px'}
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import numpy as np
