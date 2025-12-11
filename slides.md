@@ -147,44 +147,91 @@ layout: default
 layout: default
 ---
 
-# 感情のモデル化：4つの代表的理論
+# 感情のモデル化：代表的理論 (1/2)
 
-<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="grid grid-cols-2 gap-8 mt-6">
 
-<div v-click class="border p-3 rounded">
+<div>
 
-### Ekmanの基本6感情 (1992)
-怒り、嫌悪、恐れ、喜び、悲しみ、驚き
+## Ekmanの基本6感情 (1992)
 
-<div class="text-xs mt-2">基本的情動理論の代表</div>
+<img src="/ekman.jpg" class="w-full rounded shadow-lg" />
 
-</div>
+<div class="text-sm mt-4">
 
-<div v-click class="border p-3 rounded">
+**6つの基本感情**
+- 怒り、嫌悪、恐れ、喜び、悲しみ、驚き
 
-### Russellの円環モデル (1980)
-感情価 (Valence) × 覚醒度 (Arousal)
-
-<div class="text-xs mt-2">2次元空間での表現</div>
+**特徴**: 基本的情動理論の代表。普遍的な表情と結びついている。
 
 </div>
 
-<div v-click class="border p-3 rounded">
+</div>
 
-### Pankseppの基本感情システム
-神経科学的アプローチ
+<div>
 
-<div class="text-xs mt-2">脳の感情回路に着目</div>
+## Russellの円環モデル (1980)
+
+<img src="/russell-circumplex.jpg" class="w-full rounded shadow-lg" />
+
+<div class="text-sm mt-4">
+
+**2次元空間モデル**
+- 感情価 (Valence): ポジティブ ↔ ネガティブ
+- 覚醒度 (Arousal): 高覚醒 ↔ 低覚醒
+
+**特徴**: すべての感情を連続的な2次元空間で表現。
 
 </div>
 
-<div v-click class="border p-3 rounded">
+</div>
 
-### Plutchikの基本8感情
-喜び、信頼、恐れ、驚き、悲しみ、嫌悪、怒り、期待
+</div>
 
-<div class="text-xs mt-2">
-感情の強度と対立関係を表現
+---
+layout: default
+---
+
+# 感情のモデル化：代表的理論 (2/2)
+
+<div class="grid grid-cols-2 gap-8 mt-6">
+
+<div>
+
+## Plutchikの感情の輪 (1980)
+
+<img src="/plutchik-wheel.png" class="w-full rounded shadow-lg" />
+
+<div class="text-sm mt-4">
+
+**8つの基本感情**
+- 喜び、信頼、恐れ、驚き、悲しみ、嫌悪、怒り、期待
+
+**特徴**: 感情の強度、類似性、対立関係を輪状に表現。複合感情も説明可能。
+
+</div>
+
+</div>
+
+<div>
+
+## Pankseppの基本感情システム
+
+<div class="text-base mt-12">
+
+**7つの感情システム** (神経科学的アプローチ)
+
+1. **SEEKING** (探索) - ドーパミン系
+2. **RAGE** (怒り) - 闘争反応
+3. **FEAR** (恐れ) - 回避行動
+4. **LUST** (性欲) - 生殖行動
+5. **CARE** (養育) - オキシトシン系
+6. **PANIC/GRIEF** (パニック/悲嘆) - 分離不安
+7. **PLAY** (遊び) - 社会的学習
+
+<div class="mt-4 p-3 bg-purple-50 rounded">
+💡 **特徴**: 脳の感情回路と神経伝達物質に基づく
+</div>
 
 </div>
 
