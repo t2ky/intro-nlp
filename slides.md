@@ -505,44 +505,41 @@ while node:
 layout: default
 ---
 
-# MeCab実習 Step 4: 実行してみよう
+# MeCab実習 Step 4: 実用例 - 喜び語カウンター
 
 <div class="mt-4">
 
-## ハンズオン課題 🎯
+## 喜びに関する単語を数えてみよう 😊
 
-以下のコードを `mecab_demo.py` として保存し、実行してみましょう：
-
-```python {*}{maxHeight:'320px'}
+```python {all|1-6|8-21|23-27|all}{maxHeight:'340px'}
 import MeCab
 
-def analyze_text(text):
-    mecab = MeCab.Tagger()
-    print(f"入力: {text}\n")
+# 喜びに関する単語リスト
+joy_words = ["嬉しい", "楽しい", "幸せ", "喜ぶ", "最高",
+             "良い", "素晴らしい", "ワクワク", "満足"]
 
-    # 単語と品詞を抽出
+def count_joy_words(text):
+    """テキストから喜び語をカウント"""
+    mecab = MeCab.Tagger()
     node = mecab.parseToNode(text)
-    words = []
+
+    count = 0
+    found_words = []
     while node:
         if node.surface:
-            word = node.surface
-            pos = node.feature.split(',')[0]
-            words.append(f"{word}({pos})")
+            base_form = node.feature.split(',')[7]  # 原形
+            if base_form in joy_words:
+                count += 1
+                found_words.append(node.surface)
         node = node.next
 
-    print("分かち書き結果:")
-    print(" / ".join(words))
-    print()
+    return count, found_words
 
-# 試してみよう！
-texts = [
-    "今日はいい天気ですね",
-    "ロボットが人間の感情を理解する",
-    "嬉しいときも悲しいときもある"
-]
-
-for text in texts:
-    analyze_text(text)
+# 使ってみよう
+text = "今日は最高に楽しかった！嬉しいことがたくさんあった。"
+count, words = count_joy_words(text)
+print(f"喜び語: {count}個 → {words}")
+# 出力: 喜び語: 3個 → ['最高', '楽しかっ', '嬉しい']
 ```
 
 </div>
@@ -551,44 +548,54 @@ for text in texts:
 layout: default
 ---
 
-# MeCab実習 Step 5: 感情語を抽出してみる
+# MeCab実習 Step 5: HAI応用例 - フィラーチャットボット
 
 <div class="mt-4">
 
-## 感情を表す単語を見つけよう
+## 名詞を抽出して相槌を打つボット 🤖
 
-```python {all|1-7|9-24|26-30|all}{maxHeight:'360px'}
+```python {all|1-15|17-22|24-32|all}{maxHeight:'360px'}
 import MeCab
 
-# 感情語の辞書（簡易版）
-emotion_words = {
-    "嬉しい": "喜び", "楽しい": "喜び", "幸せ": "喜び",
-    "悲しい": "悲しみ", "辛い": "悲しみ",
-    "怒る": "怒り", "腹が立つ": "怒り",
-    "怖い": "恐れ", "不安": "恐れ"
-}
-
-def extract_emotions(text):
+def filler_bot(user_input):
+    """名詞を抽出してフィラー応答を返す"""
     mecab = MeCab.Tagger()
-    node = mecab.parseToNode(text)
+    node = mecab.parseToNode(user_input)
 
-    emotions = []
+    # 名詞を抽出
+    nouns = []
     while node:
-        if node.surface:
-            word = node.surface
-            base_form = node.feature.split(',')[6]  # 原形
-            if base_form in emotion_words:
-                emotions.append((word, emotion_words[base_form]))
+        if node.surface and node.feature.split(',')[0] == '名詞':
+            nouns.append(node.surface)
         node = node.next
 
-    return emotions
+    return nouns
 
-# 試してみよう
-text = "今日は楽しかったけど、明日のテストが不安です"
-print(f"テキスト: {text}")
-emotions = extract_emotions(text)
-print(f"検出された感情語: {emotions}")
+def chat():
+    """簡単なチャットボット"""
+    print("ボット: 今日は何があった？")
+    user_input = input("あなた: ")
+    nouns = filler_bot(user_input)
+
+    # フィラー応答を生成
+    if nouns:
+        import random
+        responses = [f"{nouns[0]}かぁ", f"{nouns[0]}ね",
+                    f"へぇ、{nouns[0]}なんだ"]
+        print(f"ボット: {random.choice(responses)}")
+    else:
+        print("ボット: そうなんだ")
+
+# 実行
+chat()
 ```
+
+<div class="mt-3 text-sm bg-green-50 p-2 rounded">
+<strong>実行例:</strong><br>
+ボット: 今日は何があった？<br>
+あなた: 友達とカフェに行った<br>
+ボット: 友達かぁ
+</div>
 
 </div>
 
@@ -776,70 +783,42 @@ print(f"CUDA available: {torch.cuda.is_available()}")
 layout: default
 ---
 
-# DeBERTa実習 Step 2: モデルのロード
+# DeBERTa実習 Step 2: 基本的な使い方
 
 <div class="mt-4">
 
-```python {all|1-2|4-6|8-10|12-15|all}
+## 感情推定を実行してみよう
+
+```python {all|1-3|5-8|10-11|13-17|19-23|25-27|all}{maxHeight:'380px'}
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
+import numpy as np
 
-# モデル名を指定
+# モデルとトークナイザのロード
 model_name = "neuralnaut/deberta-wrime-emotions"
-
-# トークナイザーとモデルをロード
-print("モデルをロード中...")
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
-print("✅ モデルのロード完了！")
-print(f"モデルの出力次元: {model.config.num_labels}")
-# → 8 (Plutchikの8感情に対応)
-```
+# 感情ラベル（出力の順序に対応）
+EMOTION_LABELS = ["joy", "sadness", "anticipation", "surprise", "anger", "fear", "disgust", "trust"]
 
-<v-click>
+# 推論
+text = "今日はとても楽しい一日でした！"
+inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=128)
 
-<div class="mt-4 p-3 bg-blue-50 rounded text-sm">
+model.eval()
+with torch.no_grad():
+    outputs = model(**inputs)
+    predictions = outputs.logits.cpu().numpy()[0]
 
-💡 初回実行時はモデルのダウンロードに数分かかります（約500MB）
+# ⚠️ 重要：デノーマライズ (0-1 → 0-3)
+predictions = predictions * 3.0
+predictions = np.clip(predictions, 0.0, 3.0)
 
-</div>
-
-</v-click>
-
-</div>
-
----
-layout: default
----
-
-# DeBERTa実習 Step 3: 推論関数を作る
-
-<div class="mt-4">
-
-```python {all|1-3|5-7|9-12|14-16|18-22|all}
-def predict_emotions(text, model, tokenizer):
-    """テキストから8つの感情スコアを予測"""
-
-    # トークン化
-    inputs = tokenizer(text, return_tensors="pt",
-                      max_length=128, truncation=True,
-                      padding=True)
-
-    # 推論（勾配計算不要）
-    with torch.no_grad():
-        outputs = model(**inputs)
-        logits = outputs.logits.squeeze()
-
-    # 0-1の範囲から0-3にデノーマライズ
-    predictions = logits.cpu().numpy() * 3.0
-
-    # 感情ラベル（WRIMEの順序）
-    emotions = ["joy", "sadness", "anticipation", "surprise",
-                "anger", "fear", "disgust", "trust"]
-
-    # 辞書形式で返す
-    return {emotion: float(score) for emotion, score in zip(emotions, predictions)}
+# 結果表示
+print(f"テキスト: {text}\n")
+for emotion, score in zip(EMOTION_LABELS, predictions):
+    print(f"{emotion:15s}: {score:.2f}")
 ```
 
 </div>
@@ -848,43 +827,47 @@ def predict_emotions(text, model, tokenizer):
 layout: default
 ---
 
-# DeBERTa実習 Step 4: 実行してみよう（基本編）
+# DeBERTa実習 Step 3: MeCabとの比較
 
 <div class="mt-4">
 
-```python {all|1-3|5-9|11-14|all}{maxHeight:'260px'}
-# サンプルテキスト
-texts = [
-    "今日は最高の一日でした！",
-    "明日のテストが心配で眠れない",
-    "友達に裏切られて本当に悲しい"
-]
+## 分かち書きの違いを見てみよう
 
-# 各テキストで予測
-for text in texts:
-    print(f"\n📝 テキスト: {text}")
-    emotions = predict_emotions(text, model, tokenizer)
+```python {all|1-5|7-10|12-15|17-21|all}{maxHeight:'360px'}
+from transformers import AutoTokenizer
+import MeCab
 
-    # スコアが高い順にソート
-    sorted_emotions = sorted(emotions.items(),
-                            key=lambda x: x[1], reverse=True)
+# モデルとトークナイザのロード
+model_name = "neuralnaut/deberta-wrime-emotions"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    print("感情スコア（上位3つ）:")
-    for emotion, score in sorted_emotions[:3]:
-        print(f"  {emotion}: {score:.3f}")
+# MeCabの準備
+mecab = MeCab.Tagger("-Owakati")
+
+# テキスト
+text = "今日は最高の一日でした"
+
+# MeCabの分かち書き
+mecab_tokens = mecab.parse(text).strip()
+print(f"MeCab:   {mecab_tokens}")
+
+# DeBERTa tokenizerの分かち書き
+deberta_tokens = " ".join(tokenizer.tokenize(text))
+print(f"DeBERTa: {deberta_tokens}")
 ```
 
 <v-click>
 
-## 出力例
+## 出力結果
 
 ```text
-📝 テキスト: 今日は最高の一日でした！
-感情スコア（上位3つ）:
-  joy: 2.456
-  anticipation: 1.234
-  trust: 0.987
+MeCab:   今日 は 最高 の 一 日 でし た
+DeBERTa: 今日 は 最高 の 一日 でした
 ```
+
+<div class="mt-3 p-3 bg-purple-50 rounded text-sm">
+💡 **DeBERTaはサブワード単位で分割**。未知語にも対応できる柔軟な分かち書きを実現。
+</div>
 
 </v-click>
 
@@ -894,88 +877,72 @@ for text in texts:
 layout: default
 ---
 
-# DeBERTa実習 Step 5: 可視化してみよう
+# DeBERTa実習 Step 4: HAI応用例 - 共感チャットボット
 
 <div class="mt-4">
 
-```python {all|1-2|4-16|18-20|all}{maxHeight:'400px'}
-import matplotlib.pyplot as plt
-import seaborn as sns
+## 感情推定に基づいて共感応答するボット 🤖
 
-def visualize_emotions(text, emotions):
-    """感情スコアを棒グラフで可視化"""
+```python {all|1-4|6-9|11-33|35-42|44-50|52-54|all}{maxHeight:'400px'}
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+import numpy as np
+import random
 
-    # 日本語表示用のラベル
-    labels_ja = ["喜び", "悲しみ", "期待", "驚き",
-                 "怒り", "恐れ", "嫌悪", "信頼"]
+# モデルとトークナイザのロード
+model_name = "neuralnaut/deberta-wrime-emotions"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
-    scores = list(emotions.values())
+# 感情ラベル
+EMOTION_LABELS = ["joy", "sadness", "anticipation", "surprise",
+                  "anger", "fear", "disgust", "trust"]
 
-    plt.figure(figsize=(10, 6))
-    bars = plt.bar(labels_ja, scores, color='skyblue', edgecolor='navy')
-    plt.title(f'感情分析結果: {text}', fontsize=14, pad=20)
-    plt.ylabel('感情スコア (0-3)', fontsize=12)
-    plt.ylim(0, 3)
-    plt.grid(axis='y', alpha=0.3)
+def predict_emotion(text):
+    """感情推定"""
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=128)
+    model.eval()
+    with torch.no_grad():
+        outputs = model(**inputs)
+        predictions = outputs.logits.cpu().numpy()[0]
 
-    # 最大値を強調
-    max_idx = scores.index(max(scores))
-    bars[max_idx].set_color('orange')
+    predictions = predictions * 3.0
+    predictions = np.clip(predictions, 0.0, 3.0)
 
-    plt.tight_layout()
-    plt.show()
+    # 最も強い感情を返す
+    max_idx = np.argmax(predictions)
+    return EMOTION_LABELS[max_idx], predictions[max_idx]
 
-# 使ってみよう
-text = "今日は最高の一日でした！"
-emotions = predict_emotions(text, model, tokenizer)
-visualize_emotions(text, emotions)
-```
+def empathy_bot(user_input):
+    """共感応答を生成"""
+    emotion, score = predict_emotion(user_input)
 
-</div>
+    responses = {
+        "joy": ["それは嬉しかったね！", "良かったね！"],
+        "sadness": ["それは悲しかったね", "辛かったね"],
+        "anger": ["それは腹が立つね", "イライラするよね"],
+        "fear": ["それは不安だね", "心配だよね"],
+        "surprise": ["それは驚いたね！", "びっくりしたね"],
+    }
 
----
-layout: default
----
-
-# DeBERTa実習 Step 6: 自分で試してみよう
-
-<div class="mt-4">
-
-## インタラクティブ版
-
-```python {all|1-19|21-24|all}{maxHeight:'360px'}
-def interactive_emotion_analysis():
-    """対話的に感情分析を実行"""
-
-    print("=" * 50)
-    print("DeBERTa 感情分析システム")
-    print("=" * 50)
-    print("感情を分析したいテキストを入力してください")
-    print("（終了するには 'quit' と入力）")
-    print()
-
-    while True:
-        text = input("📝 テキスト: ")
-
-        if text.lower() == 'quit':
-            print("👋 終了します")
-            break
-
-        if not text.strip():
-            continue
-
-        emotions = predict_emotions(text, model, tokenizer)
-
-        print("\n感情スコア:")
-        for emotion, score in sorted(emotions.items(),
-                                     key=lambda x: x[1], reverse=True):
-            bar = "█" * int(score * 10)
-            print(f"  {emotion:15s}: {score:.3f} {bar}")
-        print()
+    response = responses.get(emotion, ["そうなんだ", "なるほどね"])
+    return random.choice(response), emotion, score
 
 # 実行
-interactive_emotion_analysis()
+print("ボット: 今日は何があった？")
+user_input = input("あなた: ")
+response, emotion, score = empathy_bot(user_input)
+print(f"ボット: {response}")
+print(f"（検出: {emotion} = {score:.2f}）")
 ```
+
+<div class="mt-3 text-sm bg-green-50 p-2 rounded">
+<strong>実行例:</strong><br>
+ボット: 今日は何があった？<br>
+あなた: テストで悪い点を取ってしまった<br>
+ボット: それは悲しかったね<br>
+（検出: sadness = 2.34）
+</div>
 
 </div>
 
@@ -983,7 +950,7 @@ interactive_emotion_analysis()
 layout: default
 ---
 
-# DeBERTa実習 Step 7: 実践課題 🎯
+# 実践課題 🎯
 
 <div class="mt-4">
 
