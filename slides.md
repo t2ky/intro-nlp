@@ -548,13 +548,13 @@ print(f"喜び語: {count}個 → {words}")
 layout: default
 ---
 
-# MeCab実習 Step 5: HAI応用例 - フィラーチャットボット
+# MeCab実習 Step 5: HAI応用例 - フィラーチャット
 
 <div class="mt-4">
 
 ## 名詞を抽出して相槌を打つボット 🤖
 
-```python {all|1-15|17-22|24-32|all}{maxHeight:'360px'}
+```python {all|1-15|17-22|24-32|all}{maxHeight:'200px'}
 import MeCab
 
 def filler_bot(user_input):
