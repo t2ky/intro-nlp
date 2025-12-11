@@ -61,30 +61,24 @@ npm run export-pdf
 
 ## 📦 デプロイ方法
 
-### Cloudflare Pages (推奨)
-
-このスライドは `kiyo.dev/nlp/` で公開されています。
-
-#### 方法1: Cloudflare Pagesダッシュボードから
-
-1. Cloudflareダッシュボード → Pages → Create a project
-2. GitHubリポジトリと連携
-3. ビルド設定:
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-4. カスタムドメイン設定で `kiyo.dev` を追加
-
-#### 方法2: Wrangler CLIから
+### Option 1: GitHub Pages
 
 ```bash
 # ビルド
 npm run build
 
-# Cloudflare Pagesにデプロイ
-npx wrangler pages deploy dist --project-name=hai-nlp-workshop
+# GitHub Pagesにデプロイ
+# Settings > Pages で dist/ フォルダを公開
 ```
 
-### セルフホスト
+### Option 2: Cloudflare Workers/Pages
+
+```bash
+# Cloudflare Pagesにデプロイ
+npx wrangler pages deploy dist
+```
+
+### Option 3: セルフホスト
 
 ```bash
 # ビルド後、任意のWebサーバーで dist/ を公開
