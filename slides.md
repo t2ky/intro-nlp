@@ -68,6 +68,38 @@ Multimodal Aging Simulation through Voice and Facial Features
 layout: default
 ---
 
+<div class="ja-small">Master's Thesis Roadmap</div>
+
+<div class="mt-4">
+
+```mermaid
+graph TB
+    Start["Bachelor(卒論)<br/>発話内容に基づく表情生成"] --> M1
+
+    Frailty["Frailty(今回)<br/>個人性の排除・再現"]
+    NTT["NTT<br/>文脈に基づくジェスチャー分析"]
+
+    M1["Expression Generation"] --> M2
+
+    Frailty --> M2["Individuality Control"]
+    M2 --> M3
+
+    NTT --> M3["Real-time Agent Motion"]
+
+    style Start fill:#bbdefb,stroke:#1976d2,stroke-width:2px
+    style M1 fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    style M2 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    style M3 fill:#e8f5e9,stroke:#388e3c,stroke-width:3px
+    style Frailty fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px
+    style NTT fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+```
+
+</div>
+
+---
+layout: default
+---
+
 # Background: What is Frailty?
 
 <v-clicks>
@@ -399,6 +431,193 @@ layout: default
 
 </v-clicks>
 
+
+---
+layout: default
+---
+
+# Gesture Classification Framework
+<div class="ja-small">ジェスチャー分類の理論的枠組み</div>
+
+<v-clicks>
+
+## Kendon's Continuum
+<div class="ja-small">Kendonの連続体</div>
+
+<div class="mt-4">
+
+```mermaid
+graph LR
+    A[Gesticulation<br/>ジェスティキュレーション] --> B[Language-like<br/>言語的ジェスチャー]
+    B --> C[Pantomime<br/>パントマイム]
+    C --> D[Emblems<br/>エムブレム]
+    D --> E[Sign Language<br/>手話]
+
+    style A fill:#e3f2fd,stroke:#1976d2
+    style B fill:#f3e5f5,stroke:#7b1fa2
+    style C fill:#e8f5e9,stroke:#388e3c
+    style D fill:#fff9c4,stroke:#f57f17
+    style E fill:#ffccbc,stroke:#d84315
+```
+
+<div class="text-sm mt-2">
+身体動作が言語的性質を帯びる度合いによる連続体 (Kendon, 2004)
+</div>
+
+</div>
+
+</v-clicks>
+
+<v-click>
+
+<div class="mt-6 p-4 bg-yellow-50 rounded">
+
+**分析の課題**: 言語的性質が低いほど、解析が困難になる
+<div class="ja-small">Gesticulation（左側）は発話との関係が曖昧で、文脈依存的な分析が必要</div>
+
+</div>
+
+</v-click>
+
+---
+layout: default
+---
+
+# McNeill's Classification of Gestures
+<div class="ja-small">McNeillのジェスチャー分類</div>
+
+<div class="grid grid-cols-2 gap-4 mt-4">
+
+<div class="p-3 bg-blue-50 rounded">
+
+### Iconic
+<div class="ja-small">アイコニック</div>
+
+<v-click>
+
+- Depicts physical form or action
+  <div class="ja-small">物体や動作の形状を模写</div>
+- Example: Tracing spiral for "spiral staircase"
+  <div class="ja-small">例：「螺旋階段」で螺旋を描く</div>
+
+</v-click>
+
+</div>
+
+<div class="p-3 bg-purple-50 rounded">
+
+### Metaphoric
+<div class="ja-small">メタフォリック</div>
+
+<v-click>
+
+- Abstract concepts as physical forms
+  <div class="ja-small">抽象概念を物理的形状で表現</div>
+- Example: Timeline gesture (left to right)
+  <div class="ja-small">例：時間の流れ（左→右）</div>
+
+</v-click>
+
+</div>
+
+<div class="p-3 bg-green-50 rounded">
+
+### Deictic
+<div class="ja-small">デイクティック</div>
+
+<v-click>
+
+- Pointing to objects or locations
+  <div class="ja-small">対象物や方向への指差し</div>
+- Resolves references ("that", "there")
+  <div class="ja-small">指示代名詞の内容を確定</div>
+
+</v-click>
+
+</div>
+
+<div class="p-3 bg-yellow-50 rounded">
+
+### Beat
+<div class="ja-small">ビート</div>
+
+<v-click>
+
+- Rhythmic movements with speech
+  <div class="ja-small">発話のリズムに合わせた動き</div>
+- Emphasizes discourse structure
+  <div class="ja-small">談話構造の強調</div>
+
+</v-click>
+
+</div>
+
+</div>
+
+<v-click>
+
+<div class="mt-6 p-4 bg-gray-50 rounded text-sm">
+
+**Growth Point Theory** (McNeill, 2005): Gesture and speech emerge simultaneously from the same mental representation
+<div class="ja-small">成長点理論：ジェスチャーと発話は同一の思考単位から同時に分化する</div>
+
+**Synchrony Rules**: Gesture stroke synchronizes with pitch accent, shares semantic/pragmatic function with speech
+<div class="ja-small">同期規則：ストロークは強勢音節と同期し、発話と意味・語用論的機能を共有</div>
+
+</div>
+
+</v-click>
+
+---
+layout: default
+---
+
+
+<v-clicks>
+
+<div class="grid grid-cols-2 gap-6 mt-4">
+
+<div class="p-4 bg-red-50 rounded border-2 border-red-400">
+
+**Context-Gesture Disconnection**
+<div class="ja-small">文脈とジェスチャーの紐付け困難</div>
+
+- Existing methods analyze gestures in isolation
+  <div class="ja-small">既存手法はジェスチャーを単独で分析</div>
+- Cannot capture relationship with dialogue context
+  <div class="ja-small">対話文脈との関係性を捉えられない</div>
+
+</div>
+
+<div class="p-4 bg-red-50 rounded border-2 border-red-400">
+
+**Temporal Motion Analysis Gap**
+<div class="ja-small">時系列モーション分析の欠如</div>
+
+- Pose analysis methods exist
+  <div class="ja-small">ポーズ分析手法は存在する</div>
+- No established methods for temporal motion sequences
+  <div class="ja-small">時系列モーションデータの分析手法は未確立</div>
+
+</div>
+
+</div>
+
+</v-clicks>
+
+<v-click>
+
+<div class="mt-8 p-6 bg-green-50 rounded border-2 border-green-400">
+
+## Our Objective
+<div class="ja-small">本研究の目的</div>
+
+**Develop a model that bridges context and motion, enabling systematic gesture analysis**
+<div class="ja-small">文脈とモーションを紐付けるモデルを構築し、体系的なジェスチャー分析を可能にする</div>
+
+</div>
+
+</v-click>
 
 ---
 layout: center
